@@ -5,17 +5,6 @@ use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\SiswaController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -28,7 +17,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth', 'admin')->group(function () {
-    Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin/dashboard');
-    Route::resource('/admin/siswa', SiswaControllerL::class);
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin/dashboard');
+    Route::resource('/admin/siswa', SiswaController::class);
     Route::post('/logout', [LoginRegisterController::class, 'logout'])->name('logout');
 });
